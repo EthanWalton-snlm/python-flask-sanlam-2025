@@ -94,12 +94,12 @@ movies = [
 movies_bp = Blueprint("movies_bp", __name__)
 
 
-@movies_bp.get("/movies")
+@movies_bp.get("/")
 def get_all_movies():
     return movies
 
 
-@movies_bp.get("/movies/<id>")
+@movies_bp.get("/<id>")
 def get_movie_by_id(id):
     for movie in movies:
         if movie["id"] == id:
@@ -108,7 +108,7 @@ def get_movie_by_id(id):
     return {"message": "Movie not found"}, 404
 
 
-@movies_bp.delete("/movies/<id>")
+@movies_bp.delete("/<id>")
 def delete_movie_by_id(id):
     try:
         movie = get_movie_by_id(id)
@@ -121,7 +121,7 @@ def delete_movie_by_id(id):
     return {"message": "Movie not found"}, 404
 
 
-@movies_bp.post("/movies")
+@movies_bp.post("/")
 def create_movie():
     new_movie = request.get_json()
 
@@ -137,7 +137,7 @@ def create_movie():
     }, 200
 
 
-@movies_bp.put("/movies/<id>")
+@movies_bp.put("/<id>")
 def update_movie_by_id(id):
     movie = get_movie_by_id(id)
 
