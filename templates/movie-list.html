@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      display: grid;
+      place-content: center;
+    }
+
+    .movie-image {
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 0;
+      width: 250px;
+      height: 350px;
+      box-shadow: 1px 8px 9px -6px rgba(0, 0, 0, 0.6);
+      -webkit-box-shadow: 1px 8px 9px -6px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: 1px 8px 9px -6px rgba(0, 0, 0, 0.6);
+    }
+
+    .movie-image:hover {
+      transform: scale(1.01);
+      transition-duration: 0.2s;
+    }
+
+    .card {
+      width: 250px;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 90px;
+      margin-top: 50px;
+    }
+
+    .main-flex {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 50px;
+      justify-content: center;
+      gap: 90px;
+    }
+
+    .flex-c {
+      display: flex;
+      flex-direction: row;
+    }
+
+    p {
+      color: gray;
+    }
+
+    .fa-star {
+      color: gold;
+    }
+
+    .movie-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+  <body>
+    <div class="main-flex">
+      {% for movie in movies %}
+      <div class="card">
+        <img src="{{movie.poster}}" class="movie-image" />
+
+        <div class="title">
+          <h3 class="movie-name">{{movie.name}}</h3>
+
+          <h3>
+            <i class="fa-solid fa-star"></i>
+            <span class="rating">{{movie.rating}}</span>
+          </h3>
+        </div>
+
+        <p>{{movie.summary}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
