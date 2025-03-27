@@ -21,4 +21,10 @@ def movies_page():
 def movie_page_by_id(id):
     movie = get_movie_by_id(id)
 
-    return render_template("movie-details.html", movie=movie)
+    try:
+        if movie[1] == 404:
+            return render_template("not-found.html")
+        else:
+            return render_template("movie-details.html", movie=movie)
+    except KeyError:
+        return render_template("movie-details.html", movie=movie)

@@ -1,63 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+{% extends "base.html" %} {% block head_content %}
+<style>
+  body {
+    font-family: "Roboto", sans-serif;
+  }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0;
+  }
 
-  <style>
-    body {
-      font-family: "Roboto", sans-serif;
-    }
+  .profile-greeting-name {
+    font-style: italic;
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+  }
 
-    .profile-image {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 0;
-    }
+  .main-grid {
+    display: grid;
+    place-content: center;
+    text-align: center;
+  }
 
-    .profile-greeting-name {
-      font-style: italic;
-      font-weight: 700;
-      font-family: "Roboto", sans-serif;
-    }
+  .flex-h {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
+  }
+</style>
+{% endblock %} {% block content %}
 
-    .main-grid {
-      display: grid;
-      place-content: center;
-      text-align: center;
-    }
-
-    .flex-h {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      margin-top: 50px;
-    }
-  </style>
-  <body>
-    <div class="main-grid">
-      <div class="flex-h">
-        {% for profile in profiles %}
-        <div class="card">
-          <img src="{{profile.image}}" class="profile-image" />
-          <p class="">
-            Hello,
-            <span class="profile-greeting-name">{{profile.name}}</span>🎉🎉
-          </p>
-        </div>
-        {% endfor %}
-      </div>
+<div class="main-grid">
+  <div class="flex-h">
+    {% for profile in profiles %}
+    <div class="card">
+      <img src="{{profile.image}}" class="profile-image" />
+      <p class="">
+        Hello,
+        <span class="profile-greeting-name">{{profile.name}}</span>🎉🎉
+      </p>
     </div>
-  </body>
-</html>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

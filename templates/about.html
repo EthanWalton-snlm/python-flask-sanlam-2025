@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+{% extends "base.html" %} {% block head_content %}
 
-  <style>
-    .name {
-      color: orange;
-    }
-  </style>
-  <body>
-    <h1>Hey <span class="name">{{name}}</span>✒️</h1>
+<style>
+  .name-highlight {
+    color: orange;
+  }
+</style>
 
-    <ul>
-      {% for hobby in hobbies %}
-      <li>{{hobby}}</li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% endblock %} {% block content %}
+
+<h1>Hey <span class="name-highlight">{{name}}</span>✒️</h1>
+
+<ul>
+  {% for hobby in hobbies %}
+
+  <li>{{hobby}}</li>
+
+  {% endfor %}
+</ul>
+
+{% endblock %}

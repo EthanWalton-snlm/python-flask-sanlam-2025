@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    ul.nav-link-container {
+      display: flex;
+      flex-direction: row;
+      gap: 5em;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+      margin-top: 2em;
+    }
+
+    .nav-link-container li {
+      border: 0px solid black;
+      padding: 1em;
+      border-radius: 3em;
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+      width: 10em;
+      text-align: center;
+    }
+
+    .nav-link-container a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav-link-container a:hover {
+      text-decoration: none;
+      color: rgb(0, 114, 244);
+    }
+  </style>
+
+  {% block head_content %} {% endblock %}
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-link-container">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/movie-list">Movies</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    {% block content %} {% endblock %}
+  </body>
+</html>
