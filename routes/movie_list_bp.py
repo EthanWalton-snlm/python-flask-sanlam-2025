@@ -1,30 +1,25 @@
-import json
-
 from flask import Blueprint, render_template
 
-from routes.movies_bp import get_movie_by_id
+from models.movies import Movie
 
 movie_list_bp = Blueprint("movie_list_bp", __name__)
 
-with open("movies.json", "r") as file:
-    movies = json.load(file)
+
+def get_all_movies():
+    movies = Movie.query.all()
+    return [movie.to_dict() for movie in movies]
 
 
-# Task 3
 @movie_list_bp.get("/")
 def movies_page():
-    return render_template("movie-list.html", movies=movies)
+    return render_template("movie-list.html", movies=get_all_movies())
 
 
-# Task 4
 @movie_list_bp.get("/<id>")
-def movie_page_by_id(id):
-    movie = get_movie_by_id(id)
+def movie_details_page(id):
+    movie = Movie.query.get(id)
 
-    try:
-        if movie[1] == 404:
-            return render_template("not-found.html")
-        else:
-            return render_template("movie-details.html", movie=movie)
-    except KeyError:
-        return render_template("movie-details.html", movie=movie)
+    if movie is None:
+        return render_template("not-found.html")
+
+    return render_template("movie-details.html", movie=movie.to_dict())
