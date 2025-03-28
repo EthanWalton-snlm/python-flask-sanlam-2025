@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% block head_content %}
+<style>
+  .add-movie-container {
+    display: grid;
+    place-content: center;
+    min-width: 100%;
+    margin-top: 3em;
+  }
+
+  .form-element {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 20em;
+  }
+
+  input[type="submit"] {
+    padding: 0.75em;
+    width: 100%;
+    border-radius: 0.5em;
+    border: 0.1em solid rgba(0, 0, 0, 0.4);
+    font-family: "Roboto", sans-serif;
+    background-color: #ffffff;
+  }
+
+  input[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    cursor: pointer;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="add-movie-container">
+  <form
+    action="{{url_for('movie_list_bp.create_movie')}}"
+    method="POST"
+    class="form-container"
+  >
+    <div class="form-element">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        placeholder="The Bee Movie"
+        id="name"
+        name="name"
+        required
+      />
+    </div>
+
+    <div class="form-element">
+      <label for="poster">Poster</label>
+      <input
+        type="text"
+        placeholder="https://"
+        id="poster"
+        name="poster"
+        required
+      />
+    </div>
+
+    <div class="form-element">
+      <label for="Rating">Rating</label>
+      <input
+        type="number"
+        min="0"
+        max="10"
+        placeholder="7"
+        id="rating"
+        name="rating"
+        required
+      />
+    </div>
+
+    <div class="form-element">
+      <label for="summary">Summary</label>
+      <input
+        type="textarea"
+        placeholder="Lorem ipsum..."
+        id="summary"
+        name="summary"
+        required
+      />
+    </div>
+
+    <div class="form-element">
+      <label for="trailer">Trailer</label>
+      <input
+        type="text"
+        placeholder="https://youtube.com/..."
+        id="trailer"
+        name="trailer"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Movie</button>
+  </form>
+</div>
+{% endblock %}
