@@ -78,7 +78,7 @@
     <img src="{{movie.poster}}" class="movie-image" />
 
     <div class="title">
-      <h3 class="movie-name">{{movie.name}}</h3>
+      <h3 class="movie-name"><a href="{{movie.id}}">{{movie.name}}</a></h3>
 
       <h3>
         <i class="fa-solid fa-star"></i>
@@ -87,6 +87,16 @@
     </div>
 
     <p>{{movie.summary}}</p>
+
+    <form
+      action="{{url_for('movie_list_bp.delete_movie_by_id', id=movie.id)}}"
+      method="POST"
+      class="form-container"
+    >
+      <button type="submit" class="btn btn-danger">
+        <i class="fa-solid fa-trash"></i> Delete
+      </button>
+    </form>
   </div>
   {% endfor %}
 </div>

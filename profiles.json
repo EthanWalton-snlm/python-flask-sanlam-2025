@@ -1,14 +1,17 @@
 [
 {
     "name": "Ethan",
-    "image": "https://media.licdn.com/dms/image/v2/D4D03AQHUoCnm-NfUsw/profile-displayphoto-shrink_400_400/B4DZVahtRoHIAg-/0/1740980542924?e=1748476800&v=beta&t=mcytYu479BZBn8_B6vmlrXntBJBBAn6EEGO_bdUoaAk"
+    "image": "https://media.licdn.com/dms/image/v2/D4D03AQHUoCnm-NfUsw/profile-displayphoto-shrink_400_400/B4DZVahtRoHIAg-/0/1740980542924?e=1748476800&v=beta&t=mcytYu479BZBn8_B6vmlrXntBJBBAn6EEGO_bdUoaAk",
+    "isVerified": true
 },
 {
     "name": "Ragav",
-    "image": "https://ik.imagekit.io/ragavkumarv/tr:450/potraits/ragavkumarv-coat-clean-high-res-touch-pos-sm.png"
+    "image": "https://ik.imagekit.io/ragavkumarv/tr:450/potraits/ragavkumarv-coat-clean-high-res-touch-pos-sm.png",
+    "isVerified": false
 },
 {
     "name": "TK",
-    "image": "https://media.licdn.com/dms/image/v2/D4D03AQF43XPS--a3yw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1681304967335?e=1748476800&v=beta&t=FW4Zs0K5uq2cWAy1CBynb6uUDDAQ63PRaKdojlFQb_4"
+    "image": "https://media.licdn.com/dms/image/v2/D4D03AQF43XPS--a3yw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1681304967335?e=1748476800&v=beta&t=FW4Zs0K5uq2cWAy1CBynb6uUDDAQ63PRaKdojlFQb_4",
+    "isVerified": false
 }
 ]

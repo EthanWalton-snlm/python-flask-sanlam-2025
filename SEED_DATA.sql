@@ -7,6 +7,11 @@ CREATE TABLE movies (
     trailer NVARCHAR(255)
 );
 
+CREATE TABLE users (
+    id NVARCHAR(50) PRIMARY KEY,
+    username NVARCHAR(100),
+    password NVARCHAR(200),
+);
 
 INSERT INTO movies (id, name, poster, rating, summary, trailer)
 VALUES

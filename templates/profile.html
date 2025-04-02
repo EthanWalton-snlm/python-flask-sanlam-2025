@@ -30,6 +30,10 @@
     gap: 50px;
     margin-top: 50px;
   }
+
+  .verified {
+    color: oklch(0.623 0.214 259.815);
+  }
 </style>
 {% endblock %} {% block content %}
 
@@ -38,9 +42,14 @@
     {% for profile in profiles %}
     <div class="card">
       <img src="{{profile.image}}" class="profile-image" />
-      <p class="">
+      <p>
         Hello,
-        <span class="profile-greeting-name">{{profile.name}}</span>🎉🎉
+        <span class="user-name"
+          >{{profile.name}} {{ "🚀" if profile.isVerified else "🎊🎊" }}</span
+        >
+        {% if profile.isVerified %}
+        <span class="verified"><i class="fa-solid fa-circle-check"></i></span>
+        {% endif %}
       </p>
     </div>
     {% endfor %}

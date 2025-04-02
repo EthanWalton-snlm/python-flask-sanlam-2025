@@ -1,6 +1,7 @@
 import json
 
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 main_bp = Blueprint("main_bp", __name__)
 
@@ -14,13 +15,15 @@ def hello_world():
 
 
 @main_bp.get("/about")
+@login_required
 def about_page():
     return render_template("about.html", name=name, hobbies=hobbies)
 
 
 @main_bp.get("/profile")
+@login_required
 def profile_page():
-    with open("pokemon.json", "r") as file:
+    with open("profiles.json", "r") as file:
         profiles = json.load(file)
 
     return render_template("profile.html", profiles=profiles)

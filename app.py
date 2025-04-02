@@ -1,8 +1,11 @@
 from flask import Flask
+from flask_login import LoginManager
 from sqlalchemy.sql import text
 
 from config import Config
 from extensions import db
+from models.user import User
+from routes.auth_bp import auth_bp
 from routes.main_bp import main_bp
 from routes.movie_list_bp import movie_list_bp
 from routes.movies_bp import movies_bp
@@ -17,6 +20,14 @@ def create_app():
 
     db.init_app(app)
 
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = "auth_bp.login_page"  # type: ignore
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(user_id)  # maintains tokens for specific users
+
     with app.app_context():
         try:
             result = db.session.execute(text("SELECT 1")).fetchall()
@@ -29,6 +40,7 @@ def create_app():
     app.register_blueprint(main_bp)
     app.register_blueprint(movies_bp, url_prefix="/movies")
     app.register_blueprint(movie_list_bp, url_prefix="/movie-list")
+    app.register_blueprint(auth_bp)
 
     return app
 

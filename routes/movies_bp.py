@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required
 
 from constants import STATUS_CODE
 from extensions import db
@@ -8,12 +9,14 @@ movies_bp = Blueprint("movies_bp", __name__)
 
 
 @movies_bp.get("/")
+@login_required
 def get_all_movies():
     movies = Movie.query.all()
     return [movie.to_dict() for movie in movies]
 
 
 @movies_bp.get("/<id>")
+@login_required
 def get_movie_by_id(id):
     movie = Movie.query.get(id)
 
@@ -24,6 +27,7 @@ def get_movie_by_id(id):
 
 
 @movies_bp.delete("/<id>")
+@login_required
 def delete_movie_by_id(id):
     movie = Movie.query.get(id)
 
@@ -41,6 +45,7 @@ def delete_movie_by_id(id):
 
 
 @movies_bp.post("/")
+@login_required
 def create_movie():
     data = request.get_json()
     new_movie = Movie(**data)
@@ -58,16 +63,27 @@ def create_movie():
         return {"message": f"{e}"}, STATUS_CODE["SERVER_ERROR"]
 
 
-# TODO
 @movies_bp.put("/<id>")
+@login_required
 def update_movie_by_id(id):
-    movie = get_movie_by_id(id)
-
     body = request.get_json()
 
-    movie.update(body)  # type: ignore
+    try:
+        updated = Movie.query.filter_by(id=id).update(body)
 
-    return {
-        "message": "Movie updated successfully",
-        "data": movie,
-    }, 200
+        if not updated:
+            return {"message": "Movie not found"}, STATUS_CODE["SERVER_ERROR"]
+
+        db.session.commit()
+
+        updated_movie = Movie.query.get(id)
+        return {
+            "message": f"Updated movie {id}",
+            "data": updated_movie.to_dict(),
+        } if updated_movie is not None else {"message": "Movie not found"}, STATUS_CODE[
+            "SERVER_ERROR"
+        ]
+
+    except Exception as e:
+        db.session.rollback()  # Undo: Restore the data | After commit cannot undo
+        return {"message": str(e)}, STATUS_CODE["SERVER_ERROR"]
