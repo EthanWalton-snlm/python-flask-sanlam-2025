@@ -1,5 +1,5 @@
-from flask import Blueprint, redirect, render_template, request, url_for
-from flask_login import login_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from extensions import db
@@ -39,10 +39,12 @@ def submit_login_page():
             user_from_db
         )  # Create token & store in cookies for that particular user
 
+        flash("Login Successful", "success")
         return redirect(url_for("movie_list_bp.movies_page"))
     except Exception as e:
         print(e)
         db.session.rollback()
+        flash(str(e), "danger")
         return redirect(url_for("auth_bp.login_page"))
 
 
@@ -78,3 +80,9 @@ def submit_signup_page():
         print(e)
         db.session.rollback()
         return redirect(url_for("auth_bp.signup_page"))
+
+
+@auth_bp.get("/logout")
+def logout_page():
+    logout_user()
+    return redirect(url_for("auth_bp.login_page"))
